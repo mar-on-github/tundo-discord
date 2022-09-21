@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, Guild, Client, userMention, User } = require('discord.js');
 const {version} = require ('../package.json');
-var Invite = "The main invite for my server is https://discord.gg/gBhR2bzzMw";
-if (Client.Guild != '853925881411141652') var Invite = "Heh... I'm not in my home server.";
-if (Client.Guild = '1021885462530494504') var Invite = "This is my development server. Please do not invite friends over here.";
+Invite = "The main invite for my dearest server is https://discord.gg/gBhR2bzzMw";
+if (Client.Guild != '853925881411141652') Invite = "Heh... I'm not in my home server.";
+if (Client.Guild = '1021885462530494504') Invite = "This is my development server. Please do not invite friends over here.";
 
 module.exports = {
 	data: new SlashCommandBuilder()
