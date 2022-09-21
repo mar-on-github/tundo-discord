@@ -1,7 +1,51 @@
 const fs = require('node:fs');
 const path = require('node:path');
+// Require Sequelize
+const Sequelize = require('sequelize');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const { token, db } = require('./config.json');
+const sequelize = new Sequelize(db.name, db.username, db.password, {
+	host: db.host,
+	dialect: 'mysql',
+	logging: picolog,
+	// SQLite only
+	storage: 'database.sqlite',
+});
+/*
+ * equivalent to: CREATE TABLE tags(
+ * name VARCHAR(255) UNIQUE,
+ * description TEXT,
+ * username VARCHAR(255),
+ * usage_count  INT NOT NULL DEFAULT 0
+ * );
+ */
+const Tags = sequelize.define('tags', {
+	name: {
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	description: Sequelize.TEXT,
+	username: Sequelize.STRING,
+	usage_count: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false,
+	},
+});
+
+
+// Tags.sync();
+
+
+// Picolog
+function picolog(item) {
+	const { ChannelIDs } = require('./config.json');
+	const channelID = ChannelIDs.picolog;
+	client.channels.cache.get(channelID).send(item);
+	console.log(item);
+}
+
+
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -14,10 +58,6 @@ for (const file of commandFiles) {
 	const command = require(filePath);
 	client.commands.set(command.data.name, command);
 }
-
-client.once('ready', () => {
-	console.log('Ready!');
-});
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -34,4 +74,18 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 client.login(token);
+
