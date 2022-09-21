@@ -7,7 +7,7 @@ const { token, db } = require('./config.json');
 const sequelize = new Sequelize(db.name, db.username, db.password, {
 	host: db.host,
 	dialect: 'mysql',
-	logging: picolog,
+	logging: console.log,
 	// SQLite only
 	storage: 'database.sqlite',
 });
@@ -35,15 +35,6 @@ const Tags = sequelize.define('tags', {
 
 
 // Tags.sync();
-
-
-// Picolog
-function picolog(item) {
-	const { ChannelIDs } = require('./config.json');
-	const channelID = ChannelIDs.picolog;
-	client.channels.cache.get(channelID).send(item);
-	console.log(item);
-}
 
 
 
