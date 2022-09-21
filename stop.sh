@@ -1,4 +1,5 @@
 cd /srv/picobot/pico-discord-main
+nvm use 16
 npm stop
 echo "NPM stop command sent. Running updater tasks..."
 cd /srv/picobot/
