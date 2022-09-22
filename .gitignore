@@ -105,3 +105,4 @@ dist
 
 # Sensitive configuration data
 config.json
+pico-discord.code-workspace

@@ -3,7 +3,7 @@ const path = require('node:path');
 // Require Sequelize
 const Sequelize = require('sequelize');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token, db } = require('./config.json');
+const { token, db, ChannelIDs } = require('./config.json');
 const sequelize = new Sequelize(db.name, db.username, db.password, {
 	host: db.host,
 	dialect: 'mysql',
@@ -77,6 +77,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
 
 client.login(token);
 
