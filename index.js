@@ -1,5 +1,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
+
+function makeLowerCase(value) {
+	return value.toString().toLowerCase();
+}
+
 // Require Sequelize
 const Sequelize = require('sequelize');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
@@ -11,34 +16,11 @@ const sequelize = new Sequelize(db.name, db.username, db.password, {
 	// SQLite only
 	storage: 'database.sqlite',
 });
-/*
- * equivalent to: CREATE TABLE tags(
- * name VARCHAR(255) UNIQUE,
- * description TEXT,
- * username VARCHAR(255),
- * usage_count  INT NOT NULL DEFAULT 0
- * );
- */
-const Tags = sequelize.define('tags', {
-	name: {
-		type: Sequelize.STRING,
-		unique: true,
-	},
-	description: Sequelize.TEXT,
-	username: Sequelize.STRING,
-	usage_count: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-		allowNull: false,
-	},
-});
-
-
-// Tags.sync();
 
 
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages] });
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -77,6 +59,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
 
 
 client.login(token);
