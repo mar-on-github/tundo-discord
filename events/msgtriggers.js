@@ -23,7 +23,7 @@ module.exports = {
         if (makeLowerCase(message).includes('pico')) {
             if ((message.channel.id) != (ChannelIDs.selfpromo)) {
                 if ((message.channel.id) != (ChannelIDs.partners)) {
-                    if (Math.random() < 0.1) {
+                    if (Math.random() < 0.3) {
                     message.reply("That's my name!")
                     }
                 }

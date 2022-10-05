@@ -1,6 +1,6 @@
 {
   "name": "pico-discord",
-  "version": "0.1.3-indev",
+  "version": "0.1.4-indev",
   "description": "Discord bot for Whello Discord server",
   "main": "index.js",
   "scripts": {
