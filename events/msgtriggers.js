@@ -20,7 +20,7 @@ module.exports = {
             message.reply('You can\'t boop me here!')
             }
         }
-        if (makeLowerCase(message).includes('pico')) {
+        if (makeLowerCase(message).includes('tundo')) {
             if ((message.channel.id) != (ChannelIDs.selfpromo)) {
                 if ((message.channel.id) != (ChannelIDs.partners)) {
                     if (Math.random() < 0.3) {

@@ -9,7 +9,7 @@ module.exports = {
 		.setName('server')
 		.setDescription('Display info about this server.'),
 	async execute(interaction) {
-		TheReply = `:name_badge: _Server name_: \`${interaction.guild.name}\`\n:1234: _Total members_: \`${interaction.guild.memberCount}\`\n:point_up: _Picobot version_: \`${version}\`\n\n\n:arrow_forward: ${Invite}`
+		TheReply = `:name_badge: _Server name_: \`${interaction.guild.name}\`\n:1234: _Total members_: \`${interaction.guild.memberCount}\`\n:point_up: _Tundobot version_: \`${version}\`\n\n\n:arrow_forward: ${Invite}`
 		return interaction.reply(TheReply);
 	},
 };

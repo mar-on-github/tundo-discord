@@ -1,5 +1,5 @@
 {
-  "name": "pico-discord",
+  "name": "tundo-discord",
   "version": "0.1.4-indev",
   "description": "Discord bot for Whello Discord server",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mar-on-github/pico-discord.git"
+    "url": "git+https://github.com/mar-on-github/tundo-discord.git"
   },
   "author": "MLC Bloeiman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mar-on-github/pico-discord/issues"
+    "url": "https://github.com/mar-on-github/tundo-discord/issues"
   },
-  "homepage": "https://github.com/mar-on-github/pico-discord#readme",
+  "homepage": "https://github.com/mar-on-github/tundo-discord#readme",
   "devDependencies": {
     "eslint": "^8.23.1"
   },

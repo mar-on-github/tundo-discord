@@ -5,6 +5,6 @@ module.exports = {
 		.setName('boop')
 		.setDescription('Heh!'),
 	async execute(interaction) {
-		await interaction.reply('You booped my <:Piconose:1022585773918277663>??? HEH!');
+		await interaction.reply('You booped my <:Tundonose:1022585773918277663>??? HEH!');
 	},
 };
