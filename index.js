@@ -8,7 +8,7 @@ function makeLowerCase(value) {
 // Require Sequelize
 const Sequelize = require('sequelize');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token, db, ChannelIDs } = require('./config.json');
+const { token, db, ChannelIDs, TundoMoticons } = require('./config.json');
 const sequelize = new Sequelize(db.name, db.username, db.password, {
 	host: db.host,
 	dialect: 'mysql',
@@ -43,7 +43,7 @@ client.on('interactionCreate', async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		await interaction.reply({ content: `${TundoMoticons.no} There was an error while executing this command!`, ephemeral: true });
 	}
 });
 
